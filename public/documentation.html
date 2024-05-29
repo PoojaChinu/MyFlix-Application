@@ -10,7 +10,98 @@
       To build the server-side component of a “movies” web application. The web
       application will provide users with access to information about different
       movies, directors, and genres. Users will be able to sign up, update their
-      personal information, and create a list of their favorite movies.
+      personal information, and create a list of their favorite movies. ``
     </p>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow-x: auto;
+      }
+      th,
+      td {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+        max-width: 360px;
+      }
+      td code {
+        display: block;
+        max-width: 100%;
+        max-height: 200px;
+        overflow: auto;
+      }
+    </style>
+    <table>
+      <tr>
+        <th>URL</th>
+        <th>HTTP Method</th>
+        <th>Request Body</th>
+        <th>Response Body</th>
+      </tr>
+      <tr>
+        <th>/movies</th>
+        <th>GET</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>/movies/:title</th>
+        <th>GET</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>/movies/genre/:genreName</th>
+        <th>GET</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>/movies/directors/:directorName</th>
+        <th>GET</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>/users</th>
+        <th>Post</th>
+        <th>
+          A JSON object holding data about the user to add new user{ name":
+          "Mary", "favoriteMovies": ["The Mummy"]}
+        </th>
+        <th>
+          A JSON object holding about the data { "name": "Mary",
+          "favoriteMovies": [ "The Mummy" ], "id":
+          "a8b36cda-324b-4f43-9957-2a3848095b66" }
+        </th>
+      </tr>
+      <tr>
+        <th>/users/:id/:movieTitle</th>
+        <th>Post</th>
+        <th>
+          A JSON object holding data about the user to update movie { "name":
+          "Kin updated name", "favoriteMovies": [] }
+        </th>
+        <th>
+          A JSON object holding data about user to update movie{ The Mummyhas
+          been added to user 1's array }
+        </th>
+      </tr>
+      <tr>
+        <th>/users/:id/:movieTitle</th>
+        <th>Delete</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>/users/:id</th>
+        <th>Delete</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </table>
   </body>
 </html>

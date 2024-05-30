@@ -47,28 +47,61 @@
         <th>/movies</th>
         <th>GET</th>
         <th></th>
+        <th>
+          { "id": 1, "Title": "Alien", "Description": "The film follows the crew
+          of the commercial space tug Nostromo, who, after coming across a
+          mysterious derelict spaceship on an uncharted planetoid, find
+          themselves up against a deadly and aggressive extraterrestrial loose
+          within their vessel.", "Genre": { "Name": "Horror, Sci-Fi",
+          "Discription": "The film follows the crew of the commercial space tug
+          Nostromo, who, after coming across a mysterious derelict spaceship on
+          an uncharted planetoid," }, "Director": { "Name": "Ridley Scott",
+          "Bio": "Ridley Scott is pretty incredible. He’s been nominated for
+          Best Director three times but is not merely resting on his laurels.",
+          "BirthYear": "1969" } },
+        </th>
       </tr>
       <tr>
         <th>/movies/:title</th>
         <th>GET</th>
         <th></th>
-        <th></th>
+        <th>
+          { "id": 1, "Title": "Alien", "Description": "The film follows the crew
+          of the commercial space tug Nostromo, who, after coming across a
+          mysterious derelict spaceship on an uncharted planetoid, find
+          themselves up against a deadly and aggressive extraterrestrial loose
+          within their vessel.", "Genre": { "Name": "Horror, Sci-Fi",
+          "Discription": "The film follows the crew of the commercial space tug
+          Nostromo, who, after coming across a mysterious derelict spaceship on
+          an uncharted planetoid," }, "Director": { "Name": "Ridley Scott",
+          "Bio": "Ridley Scott is pretty incredible. He’s been nominated for
+          Best Director three times but is not merely resting on his laurels.",
+          "BirthYear": "1969" } }
+        </th>
       </tr>
       <tr>
         <th>/movies/genre/:genreName</th>
         <th>GET</th>
         <th></th>
-        <th></th>
+        <th>
+          { "Name": "Action, Adventure", "Discription": "The film follows the
+          crew of the commercial space tug Nostromo, who, after coming across a
+          mysterious derelict spaceship on an uncharted planetoid," }
+        </th>
       </tr>
       <tr>
         <th>/movies/directors/:directorName</th>
         <th>GET</th>
         <th></th>
-        <th></th>
+        <th>
+          { "Name": "Ridley Scott", "Bio": "Ridley Scott is pretty incredible.
+          He’s been nominated for Best Director three times but is not merely
+          resting on his laurels.", "BirthYear": "1969" }
+        </th>
       </tr>
       <tr>
         <th>/users</th>
-        <th>Post</th>
+        <th>POST</th>
         <th>
           A JSON object holding data about the user to add new user{ name":
           "Mary", "favoriteMovies": ["The Mummy"]}
@@ -80,27 +113,37 @@
         </th>
       </tr>
       <tr>
-        <th>/users/:id/:movieTitle</th>
-        <th>Post</th>
+        <th>/users/:userId/favorites/:movieId</th>
+        <th>PATCH</th>
         <th>
           A JSON object holding data about the user to update movie { "name":
           "Kin updated name", "favoriteMovies": [] }
         </th>
         <th>
-          A JSON object holding data about user to update movie{ The Mummyhas
-          been added to user 1's array }
+          A JSON object holding data about user to update movie{ Movie Id: 6 has
+          been added to user 1's array}
         </th>
       </tr>
       <tr>
-        <th>/users/:id/:movieTitle</th>
+        <th>/users/:userId/favorites/:movieId</th>
         <th>Delete</th>
-        <th></th>
+        <th>
+          A JSON object holding data about the user to update movie { "name":
+          "Kin updated name", "favoriteMovies": [] }
+        </th>
+        <th>
+          A JSON object holding data about user to delete movie Movie Id: 6 has
+          been removed from user 1's array
+        </th>
       </tr>
       <tr>
         <th>/users/:id</th>
         <th>Delete</th>
         <th></th>
-        <th></th>
+        <th>
+          A JSON object holding data to delete the user Movie Iduser 2 has been
+          deleted
+        </th>
       </tr>
     </table>
   </body>

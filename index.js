@@ -67,6 +67,7 @@ let users = [
 
 let movies = [
   {
+    id: 1,
     Title: "Alien",
     Description:
       "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid, find themselves up against a deadly and aggressive extraterrestrial loose within their vessel.",
@@ -82,6 +83,7 @@ let movies = [
     },
   },
   {
+    id: 2,
     Title: "Aliens",
     Description:
       "Set in the far future, it stars Sigourney Weaver as Ellen Ripley, the sole survivor of an alien attack on her ship. When communications are lost with a human colony on the moon where her crew first saw the alien creatures, Ripley agrees to return to the site with a unit of Colonial Marines to investigate.",
@@ -97,6 +99,7 @@ let movies = [
     },
   },
   {
+    id: 3,
     Title: "The Mummy",
     Description:
       "The film follows adventurer Rick O'Connell as he travels to Hamunaptra, the City of the Dead, with librarian Evelyn Carnahan and her older brother Jonathan, where they accidentally awaken Imhotep, a cursed high priest with supernatural powers.",
@@ -112,6 +115,7 @@ let movies = [
     },
   },
   {
+    id: 4,
     Title: "Starship Troopers",
     Description:
       "Set in the 23rd century, the story follows teenager Johnny Rico and his friends serving in the military of the United Citizen Federation, an Earth world government engaged in interstellar war with an alien species of Arachnids.",
@@ -127,6 +131,7 @@ let movies = [
     },
   },
   {
+    id: 5,
     Title: "Battle: Los Angeles",
     Description:
       "The story follows a Marine staff sergeant played by Aaron Eckhart who leads a platoon of U.S. Marines, joined by other stranded military personnel, defending Los Angeles from alien invasion.",
@@ -142,6 +147,7 @@ let movies = [
     },
   },
   {
+    id: 6,
     Title: "The Last Voyage of the Demeter",
     Description:
       "Its plot follows the doomed crew of the merchant ship Demeter led by Captain Elliot who attempt to survive the treacherous ocean voyage from Transylvania to London while being stalked by a legendary vampire known as Dracula",
@@ -157,6 +163,7 @@ let movies = [
     },
   },
   {
+    id: 7,
     Title: "Avatar",
     Description:
       " It is set in the mid-22nd century, when humans are colonizing Pandora, a lush habitable moon of a gas giant in the Alpha Centauri star system, in order to mine the valuable mineral unobtanium,[a] the room-temperature superconductor mineral. The expansion of the mining colony threatens the continued existence of a local tribe of Na'vi, a humanoid species indigenous to Pandora.",
@@ -172,6 +179,7 @@ let movies = [
     },
   },
   {
+    id: 8,
     Title: "Dungeons & Dragons: Honor Among Thieves",
     Description:
       "A charming thief and a band of unlikely adventurers embark on an epic quest to retrieve a lost relic, but things go dangerously awry when they run afoul of the wrong people.",
@@ -187,6 +195,7 @@ let movies = [
     },
   },
   {
+    id: 9,
     Title: "A",
     Description: "T",
     Genre: {
@@ -201,6 +210,7 @@ let movies = [
     },
   },
   {
+    id: 10,
     Title: "A",
     Description: "T",
     Genre: {
@@ -236,18 +246,6 @@ app.get("/documentation", (req, res) => {
 
 app.get("/", (req, res) => {
   res.send("Welcome to my App!");
-});
-
-//Error Handling
-
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something broke!");
-});
-
-//listens the request
-app.listen(8080, () => {
-  console.log("Your app is listening to the port");
 });
 
 // Creating API endpoints
@@ -331,33 +329,40 @@ app.put("/users/:id", (req, res) => {
   }
 });
 
-// Add movie to the their list of favorites
-app.post("/users/:id/:movieTitle", (req, res) => {
-  const { id, movieTitle } = req.params;
+// Add movie to the user list of their favorites
+app.patch("/users/:userId/favorites/:movieId", (req, res) => {
+  const { userId, movieId } = req.params;
 
-  let user = users.find((user) => user.id == id);
+  let user = users.find((user) => user.id == userId);
+  let movie = movies.find((movie) => movie.id == movieId);
 
   if (user) {
-    user.favoriteMovies.push(movieTitle);
-    res.status(200).send(`${movieTitle}has been added to user ${id}'s array`);
+    user.favoriteMovies.push(movie.Title);
+    res
+      .status(200)
+      .send(`Movie Id: ${movieId} has been added to user ${userId}'s array`);
   } else {
     res.status(400).send("no such user");
   }
 });
 
 // Delete movie to their list of favouirtes
-app.delete("/users/:id/:movieTitle", (req, res) => {
-  const { id, movieTitle } = req.params;
+app.delete("/users/:userId/favorites/:movieId", (req, res) => {
+  const { userId, movieId } = req.params;
 
-  let user = users.find((user) => user.id == id);
+  let user = users.find((user) => user.id == userId);
+  let movie = movies.find((movie) => movie.id == movieId);
 
   if (user) {
     user.favoriteMovies = user.favoriteMovies.filter(
-      (title) => title !== movieTitle
+      (title) => title !== movie.Title
     );
+
     res
       .status(200)
-      .send(`${movieTitle}has been removed from user ${id}'s array`);
+      .send(
+        `Movie Id: ${movieId} has been removed from user ${userId}'s array`
+      );
   } else {
     res.status(400).send("no such user");
   }
@@ -375,4 +380,16 @@ app.delete("/users/:id", (req, res) => {
   } else {
     res.status(400).send("no such user");
   }
+});
+
+//Error Handling
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
+
+//listens the request
+app.listen(8080, () => {
+  console.log("Your app is listening to the port");
 });

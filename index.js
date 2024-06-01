@@ -57,11 +57,33 @@ let users = [
     id: 1,
     name: "Kin",
     favoriteMovies: ["The Mummy"],
+    Birthday: new Date("1985-02-19"),
   },
   {
     id: 2,
     name: "Joe",
     favoriteMovies: ["Alien"],
+    Birthday: new Date("1978-06-19"),
+  },
+
+  {
+    id: 3,
+    name: "Clara",
+    favoriteMovies: ["Monster"],
+    Birthday: new Date("1956-06-23"),
+  },
+  {
+    id: 4,
+    name: "Maria",
+    favoriteMovies: ["Battle: Los Angeles"],
+    Birthday: new Date("1978-06-19"),
+  },
+
+  {
+    id: 5,
+    name: "Rachel",
+    favoriteMovies: ["Starship Troopers"],
+    Birthday: new Date("1959-08-45"),
   },
 ];
 
@@ -220,6 +242,22 @@ let movies = [
     },
     Director: {
       Name: "r",
+      Bio: "Ridley Scott is pretty incredible. He’s been nominated for Best Director three times but is not merely resting on his laurels.",
+      BirthYear: "1969",
+    },
+  },
+  {
+    id: 11,
+    Title: "Monster",
+    Description:
+      " It is set in the mid-22nd century, when humans are colonizing Pandora, a lush habitable moon of a gas giant in the Alpha Centauri star system, in order to mine the valuable mineral unobtanium,[a] the room-temperature superconductor mineral. The expansion of the mining colony threatens the continued existence of a local tribe of Na'vi, a humanoid species indigenous to Pandora.",
+    Genre: {
+      Name: "Adventure, Fantasy, Comedy",
+      Discription:
+        "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid,",
+    },
+    Director: {
+      Name: "Jonathan Goldstein",
       Bio: "Ridley Scott is pretty incredible. He’s been nominated for Best Director three times but is not merely resting on his laurels.",
       BirthYear: "1969",
     },

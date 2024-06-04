@@ -48,12 +48,12 @@
         <th>GET</th>
         <th></th>
         <th>
-          { "id": 1, "Title": "Alien", "Description": "The film follows the crew
-          of the commercial space tug Nostromo, who, after coming across a
+          { "_id": 1, "Title": "Alien", "Description": "The film follows the
+          crew of the commercial space tug Nostromo, who, after coming across a
           mysterious derelict spaceship on an uncharted planetoid, find
           themselves up against a deadly and aggressive extraterrestrial loose
           within their vessel.", "Genre": { "Name": "Horror, Sci-Fi",
-          "Discription": "The film follows the crew of the commercial space tug
+          "Description": "The film follows the crew of the commercial space tug
           Nostromo, who, after coming across a mysterious derelict spaceship on
           an uncharted planetoid," }, "Director": { "Name": "Ridley Scott",
           "Bio": "Ridley Scott is pretty incredible. He’s been nominated for
@@ -66,12 +66,12 @@
         <th>GET</th>
         <th></th>
         <th>
-          { "id": 1, "Title": "Alien", "Description": "The film follows the crew
-          of the commercial space tug Nostromo, who, after coming across a
+          { "_id": 1, "Title": "Alien", "Description": "The film follows the
+          crew of the commercial space tug Nostromo, who, after coming across a
           mysterious derelict spaceship on an uncharted planetoid, find
           themselves up against a deadly and aggressive extraterrestrial loose
           within their vessel.", "Genre": { "Name": "Horror, Sci-Fi",
-          "Discription": "The film follows the crew of the commercial space tug
+          "Description": "The film follows the crew of the commercial space tug
           Nostromo, who, after coming across a mysterious derelict spaceship on
           an uncharted planetoid," }, "Director": { "Name": "Ridley Scott",
           "Bio": "Ridley Scott is pretty incredible. He’s been nominated for
@@ -84,7 +84,7 @@
         <th>GET</th>
         <th></th>
         <th>
-          { "Name": "Action, Adventure", "Discription": "The film follows the
+          { "Name": "Action, Adventure", "Description": "The film follows the
           crew of the commercial space tug Nostromo, who, after coming across a
           mysterious derelict spaceship on an uncharted planetoid," }
         </th>
@@ -103,33 +103,30 @@
         <th>/users</th>
         <th>POST</th>
         <th>
-          A JSON object holding data about the user to add new user{ name":
-          "Mary", "favoriteMovies": ["The Mummy"]}
+          A JSON object holding data about the user to add new user { "Name":
+          "Pooja", "FavoriteMovies": ["The Mummy"]}
         </th>
         <th>
-          A JSON object holding about the data { "name": "Mary",
-          "favoriteMovies": [ "The Mummy" ], "id":
-          "a8b36cda-324b-4f43-9957-2a3848095b66" }
+          A JSON object holding about the data { "Name": "Pooja",
+          "FavoriteMovies": [ "The Mummy" ], "_id":
+          "81dd3184-8d87-4c20-b35a-880097d91b68" }
         </th>
       </tr>
       <tr>
-        <th>/users/:userId/favorites/:movieId</th>
+        <th>/users/:userID/favorites/:movieID</th>
         <th>PATCH</th>
+        <th></th>
         <th>
-          A JSON object holding data about the user to update movie { "name":
-          "Kin updated name", "favoriteMovies": [] }
-        </th>
-        <th>
-          A JSON object holding data about user to update movie{ Movie Id: 6 has
-          been added to user 1's array}
+          A JSON object holding data about user to update movie Movie Id: 6 has
+          been added to user 1's array
         </th>
       </tr>
       <tr>
-        <th>/users/:userId/favorites/:movieId</th>
+        <th>/users/:userId/favorites/:movieID</th>
         <th>Delete</th>
         <th>
-          A JSON object holding data about the user to update movie { "name":
-          "Kin updated name", "favoriteMovies": [] }
+          A JSON object holding data about the user to update movie { "Name":
+          "Kin updated name", "FavoriteMovies": [] }
         </th>
         <th>
           A JSON object holding data about user to delete movie Movie Id: 6 has

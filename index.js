@@ -5,97 +5,50 @@ const uuid = require("uuid");
 
 const app = express();
 
-let topMovies = [
-  {
-    Name: "The-Hangover",
-    Genres: "comedie",
-  },
-  {
-    Name: "Wedding Crashers",
-    Genres: "comedie",
-  },
-  {
-    Name: "Taxi",
-    Genres: "comedie",
-  },
-  {
-    Name: "The Heat",
-    Genres: "comedie ",
-  },
-  {
-    Name: "Hangover",
-    Genres: "comedie ",
-  },
-  {
-    Name: "Role Models",
-    Genres: "comedie ",
-  },
-  {
-    Name: "Hangover",
-    Genres: "comedie ",
-  },
-  {
-    Name: "We are the Millers",
-    Genres: "comedie ",
-  },
-  {
-    Name: "Bringing down the house",
-    Genres: "comedie ",
-  },
-  {
-    Name: "The Interview",
-    Genres: "comedie ",
-  },
-  {
-    Name: "Big Moments",
-    Genres: "comedie ",
-  },
-];
-
 let users = [
   {
-    id: 1,
-    name: "Kin",
-    favoriteMovies: ["The Mummy"],
+    _id: 1,
+    Name: "Kin",
+    FavoriteMovies: [3],
     Birthday: new Date("1985-02-19"),
   },
   {
-    id: 2,
-    name: "Joe",
-    favoriteMovies: ["Alien"],
+    _id: 2,
+    Name: "Joe",
+    FavoriteMovies: [1],
     Birthday: new Date("1978-06-19"),
   },
 
   {
-    id: 3,
-    name: "Clara",
-    favoriteMovies: ["Monster"],
+    _id: 3,
+    Name: "Clara",
+    FavoriteMovies: [11],
     Birthday: new Date("1956-06-23"),
   },
   {
-    id: 4,
-    name: "Maria",
-    favoriteMovies: ["Battle: Los Angeles"],
+    _id: 4,
+    Name: "Maria",
+    FavoriteMovies: [5],
     Birthday: new Date("1978-06-19"),
   },
 
   {
-    id: 5,
-    name: "Rachel",
-    favoriteMovies: ["Starship Troopers"],
+    _id: 5,
+    Name: "Rachel",
+    FavoriteMovies: [4],
     Birthday: new Date("1959-08-45"),
   },
 ];
 
 let movies = [
   {
-    id: 1,
+    _id: 1,
     Title: "Alien",
     Description:
       "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid, find themselves up against a deadly and aggressive extraterrestrial loose within their vessel.",
     Genre: {
       Name: "Horror, Sci-Fi",
-      Discription:
+      Description:
         "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid,",
     },
     Director: {
@@ -105,13 +58,13 @@ let movies = [
     },
   },
   {
-    id: 2,
+    _id: 2,
     Title: "Aliens",
     Description:
       "Set in the far future, it stars Sigourney Weaver as Ellen Ripley, the sole survivor of an alien attack on her ship. When communications are lost with a human colony on the moon where her crew first saw the alien creatures, Ripley agrees to return to the site with a unit of Colonial Marines to investigate.",
     Genre: {
       Name: "Action, Adventure",
-      Discription:
+      Description:
         "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid,",
     },
     Director: {
@@ -121,13 +74,13 @@ let movies = [
     },
   },
   {
-    id: 3,
+    _id: 3,
     Title: "The Mummy",
     Description:
       "The film follows adventurer Rick O'Connell as he travels to Hamunaptra, the City of the Dead, with librarian Evelyn Carnahan and her older brother Jonathan, where they accidentally awaken Imhotep, a cursed high priest with supernatural powers.",
     Genre: {
       Name: "Action, Adventure, Horror",
-      Discription:
+      Description:
         "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid,",
     },
     Director: {
@@ -137,13 +90,13 @@ let movies = [
     },
   },
   {
-    id: 4,
+    _id: 4,
     Title: "Starship Troopers",
     Description:
       "Set in the 23rd century, the story follows teenager Johnny Rico and his friends serving in the military of the United Citizen Federation, an Earth world government engaged in interstellar war with an alien species of Arachnids.",
     Genre: {
       Name: "Science Fiction, Action",
-      Discription:
+      Description:
         "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid,",
     },
     Director: {
@@ -153,13 +106,13 @@ let movies = [
     },
   },
   {
-    id: 5,
+    _id: 5,
     Title: "Battle: Los Angeles",
     Description:
       "The story follows a Marine staff sergeant played by Aaron Eckhart who leads a platoon of U.S. Marines, joined by other stranded military personnel, defending Los Angeles from alien invasion.",
     Genre: {
       Name: "Action, Adventue, Sci-Fi",
-      Discription:
+      Description:
         "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid,",
     },
     Director: {
@@ -169,13 +122,13 @@ let movies = [
     },
   },
   {
-    id: 6,
+    _id: 6,
     Title: "The Last Voyage of the Demeter",
     Description:
       "Its plot follows the doomed crew of the merchant ship Demeter led by Captain Elliot who attempt to survive the treacherous ocean voyage from Transylvania to London while being stalked by a legendary vampire known as Dracula",
     Genre: {
       Name: "Fantasy, Horror",
-      Discription:
+      Description:
         "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid,",
     },
     Director: {
@@ -185,13 +138,13 @@ let movies = [
     },
   },
   {
-    id: 7,
+    _id: 7,
     Title: "Avatar",
     Description:
       " It is set in the mid-22nd century, when humans are colonizing Pandora, a lush habitable moon of a gas giant in the Alpha Centauri star system, in order to mine the valuable mineral unobtanium,[a] the room-temperature superconductor mineral. The expansion of the mining colony threatens the continued existence of a local tribe of Na'vi, a humanoid species indigenous to Pandora.",
     Genre: {
       Name: "Action, Adventure, Sci-Fi",
-      Discription:
+      Description:
         "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid,",
     },
     Director: {
@@ -201,13 +154,13 @@ let movies = [
     },
   },
   {
-    id: 8,
+    _id: 8,
     Title: "Dungeons & Dragons: Honor Among Thieves",
     Description:
       "A charming thief and a band of unlikely adventurers embark on an epic quest to retrieve a lost relic, but things go dangerously awry when they run afoul of the wrong people.",
     Genre: {
       Name: "Adventure, Fantasy, Comedy",
-      Discription:
+      Description:
         "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid,",
     },
     Director: {
@@ -217,12 +170,12 @@ let movies = [
     },
   },
   {
-    id: 9,
+    _id: 9,
     Title: "A",
     Description: "T",
     Genre: {
       Name: "H",
-      Discription:
+      Description:
         "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid,",
     },
     Director: {
@@ -232,12 +185,12 @@ let movies = [
     },
   },
   {
-    id: 10,
+    _id: 10,
     Title: "A",
     Description: "T",
     Genre: {
       Name: "H",
-      Discription:
+      Description:
         "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid,",
     },
     Director: {
@@ -247,13 +200,13 @@ let movies = [
     },
   },
   {
-    id: 11,
+    _id: 11,
     Title: "Monster",
     Description:
       " It is set in the mid-22nd century, when humans are colonizing Pandora, a lush habitable moon of a gas giant in the Alpha Centauri star system, in order to mine the valuable mineral unobtanium,[a] the room-temperature superconductor mineral. The expansion of the mining colony threatens the continued existence of a local tribe of Na'vi, a humanoid species indigenous to Pandora.",
     Genre: {
       Name: "Adventure, Fantasy, Comedy",
-      Discription:
+      Description:
         "The film follows the crew of the commercial space tug Nostromo, who, after coming across a mysterious derelict spaceship on an uncharted planetoid,",
     },
     Director: {
@@ -273,10 +226,6 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 
 // Creating express routing syntax using Get method
-
-// app.get("/movies", (req, res) => {
-//   res.json(topMovies);
-// });
 
 app.get("/documentation", (req, res) => {
   res.sendFile("public/documentation.html", { root: __dirname });
@@ -342,8 +291,8 @@ app.get("/users", (req, res) => {
 app.post("/users", (req, res) => {
   const newUser = req.body;
 
-  if (newUser.name) {
-    newUser.id = uuid.v4();
+  if (newUser.Name) {
+    newUser._id = uuid.v4();
     users.push(newUser);
     res.status(201).json(newUser);
   } else {
@@ -357,10 +306,10 @@ app.put("/users/:id", (req, res) => {
   const { id } = req.params;
   const updatedUser = req.body;
 
-  let user = users.find((user) => user.id == id);
+  let user = users.find((user) => user._id == id);
 
   if (user) {
-    user.name = updatedUser.name;
+    user.Name = updatedUser.name;
     res.status(200).json(user);
   } else {
     res.status(400).send("no such user");
@@ -368,38 +317,38 @@ app.put("/users/:id", (req, res) => {
 });
 
 // Add movie to the user list of their favorites
-app.patch("/users/:userId/favorites/:movieId", (req, res) => {
-  const { userId, movieId } = req.params;
+app.patch("/users/:userID/favorites/:movieID", (req, res) => {
+  const { userID, movieID } = req.params;
 
-  let user = users.find((user) => user.id == userId);
-  let movie = movies.find((movie) => movie.id == movieId);
+  let user = users.find((user) => user._id == userID);
+  let movie = movies.find((movie) => movie._id == movieID);
 
   if (user) {
-    user.favoriteMovies.push(movie.Title);
+    user.FavoriteMovies.push(movie._id);
     res
       .status(200)
-      .send(`Movie Id: ${movieId} has been added to user ${userId}'s array`);
+      .send(`Movie Id: ${movieID} has been added to user ${userID}'s array`);
   } else {
     res.status(400).send("no such user");
   }
 });
 
 // Delete movie to their list of favouirtes
-app.delete("/users/:userId/favorites/:movieId", (req, res) => {
-  const { userId, movieId } = req.params;
+app.delete("/users/:userID/favorites/:movieID", (req, res) => {
+  const { userID, movieID } = req.params;
 
-  let user = users.find((user) => user.id == userId);
-  let movie = movies.find((movie) => movie.id == movieId);
+  let user = users.find((user) => user._id == userID);
+  let movie = movies.find((movie) => movie._id == movieID);
 
   if (user) {
-    user.favoriteMovies = user.favoriteMovies.filter(
+    user.FavoriteMovies = user.FavoriteMovies.filter(
       (title) => title !== movie.Title
     );
 
     res
       .status(200)
       .send(
-        `Movie Id: ${movieId} has been removed from user ${userId}'s array`
+        `Movie Id: ${movieID} has been removed from user ${userID}'s array`
       );
   } else {
     res.status(400).send("no such user");
@@ -410,10 +359,10 @@ app.delete("/users/:userId/favorites/:movieId", (req, res) => {
 app.delete("/users/:id", (req, res) => {
   const { id } = req.params;
 
-  let user = users.find((user) => user.id == id);
+  let user = users.find((user) => user._id == id);
 
   if (user) {
-    users = users.filter((user) => user.id != id);
+    users = users.filter((user) => user._id != id);
     res.status(200).send(`user ${id} has been deleted`);
   } else {
     res.status(400).send("no such user");

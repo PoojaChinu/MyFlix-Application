@@ -48,17 +48,18 @@
         <th>GET</th>
         <th></th>
         <th>
-          { "_id": 1, "Title": "Alien", "Description": "The film follows the
-          crew of the commercial space tug Nostromo, who, after coming across a
-          mysterious derelict spaceship on an uncharted planetoid, find
-          themselves up against a deadly and aggressive extraterrestrial loose
-          within their vessel.", "Genre": { "Name": "Horror, Sci-Fi",
-          "Description": "The film follows the crew of the commercial space tug
-          Nostromo, who, after coming across a mysterious derelict spaceship on
-          an uncharted planetoid," }, "Director": { "Name": "Ridley Scott",
-          "Bio": "Ridley Scott is pretty incredible. He’s been nominated for
-          Best Director three times but is not merely resting on his laurels.",
-          "BirthYear": "1969" } },
+          { "Genre": { "Name": "Action, Adventure", "Description": "The film
+          follows the crew of the commercial space tug Nostromo, who, after
+          coming across a mysterious derelict spaceship on an uncharted
+          planetoid," }, "Director": { "Name": "James Cameron", "Bio": "Ridley
+          Scott is pretty incredible. He’s been nominated for Best Director
+          three times but is not merely resting on his laurels.", "BirthYear":
+          "1969" }, "_id": "665e21bf0f85f47b51ae4d6b", "Title": "Aliens",
+          "Description": "Set in the far future, it stars Sigourney Weaver as
+          Ellen Ripley, the sole survivor of an alien attack on her ship. When
+          communications are lost with a human colony on the moon where her crew
+          first saw the alien creatures, Ripley agrees to return to the site
+          with a unit of Colonial Marines to investigate." },
         </th>
       </tr>
       <tr>
@@ -66,17 +67,17 @@
         <th>GET</th>
         <th></th>
         <th>
-          { "_id": 1, "Title": "Alien", "Description": "The film follows the
-          crew of the commercial space tug Nostromo, who, after coming across a
-          mysterious derelict spaceship on an uncharted planetoid, find
-          themselves up against a deadly and aggressive extraterrestrial loose
-          within their vessel.", "Genre": { "Name": "Horror, Sci-Fi",
-          "Description": "The film follows the crew of the commercial space tug
-          Nostromo, who, after coming across a mysterious derelict spaceship on
-          an uncharted planetoid," }, "Director": { "Name": "Ridley Scott",
-          "Bio": "Ridley Scott is pretty incredible. He’s been nominated for
-          Best Director three times but is not merely resting on his laurels.",
-          "BirthYear": "1969" } }
+          { "Genre": { "Name": "Science Fiction, Action", "Description": "The
+          film follows the crew of the commercial space tug Nostromo, who, after
+          coming across a mysterious derelict spaceship on an uncharted
+          planetoid," }, "Director": { "Name": "Paul Verhoeven", "Bio": "Ridley
+          Scott is pretty incredible. He’s been nominated for Best Director
+          three times but is not merely resting on his laurels.", "BirthYear":
+          "1969" }, "_id": "665e21bf0f85f47b51ae4d6d", "Title": "Starship
+          Troopers", "Description": "Set in the 23rd century, the story follows
+          teenager Johnny Rico and his friends serving in the military of the
+          United Citizen Federation, an Earth world government engaged in
+          interstellar war with an alien species of Arachnids." }
         </th>
       </tr>
       <tr>
@@ -94,22 +95,22 @@
         <th>GET</th>
         <th></th>
         <th>
-          { "Name": "Ridley Scott", "Bio": "Ridley Scott is pretty incredible.
-          He’s been nominated for Best Director three times but is not merely
-          resting on his laurels.", "BirthYear": "1969" }
+          { "Name": "Jonathan Goldstein", "Bio": "Ridley Scott is pretty
+          incredible. He’s been nominated for Best Director three times but is
+          not merely resting on his laurels.", "BirthYear": "1969" }
         </th>
       </tr>
       <tr>
         <th>/users</th>
         <th>POST</th>
         <th>
-          A JSON object holding data about the user to add new user { "Name":
-          "Pooja", "FavoriteMovies": ["The Mummy"]}
+          A JSON object holding data about the user to add new user { "Name" :
+          "Senorita", "Birthday" : "1995-06-23" }
         </th>
         <th>
-          A JSON object holding about the data { "Name": "Pooja",
-          "FavoriteMovies": [ "The Mummy" ], "_id":
-          "81dd3184-8d87-4c20-b35a-880097d91b68" }
+          { "Name": "Senorita", "FavoriteMovies": [], "Birthday":
+          "1995-06-23T00:00:00.000Z", "_id": "6660404e309ec80a85024cd8", "__v":
+          0 }
         </th>
       </tr>
       <tr>
@@ -117,8 +118,9 @@
         <th>PATCH</th>
         <th></th>
         <th>
-          A JSON object holding data about user to update movie Movie Id: 6 has
-          been added to user 1's array
+          A JSON object holding data about user to update movie Movie Id: {
+          "_id": "665ed1536c94756777c8289a", "Name": "Joe", "FavoriteMovies": [
+          "665e21bf0f85f47b51ae4d6b" ], "Birthday": "1978-06-19T00:00:00.000Z" }
         </th>
       </tr>
       <tr>
@@ -129,8 +131,8 @@
           "Kin updated name", "FavoriteMovies": [] }
         </th>
         <th>
-          A JSON object holding data about user to delete movie Movie Id: 6 has
-          been removed from user 1's array
+          A JSON object holding data about user to delete movie Movie Id:
+          65e21bf0f85f47b51ae4d6b has been removed from user 1's array
         </th>
       </tr>
       <tr>
@@ -138,8 +140,8 @@
         <th>Delete</th>
         <th></th>
         <th>
-          A JSON object holding data to delete the user Movie Iduser 2 has been
-          deleted
+          A JSON object holding data to delete the user Movie Id
+          665ed1536c94756777c8289b has been deleted.
         </th>
       </tr>
     </table>

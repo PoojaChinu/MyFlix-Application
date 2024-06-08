@@ -11,11 +11,14 @@ const Users = Models.User;
 
 const app = express();
 
-// connect to database locally
+// Allow mongoose to connect to database locally
 mongoose.connect("mongodb://localhost:27017/db", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+// Allow mongoose to connect to databse remotely
+mongoose.connect(process.env.CONNECTION_URI);
 
 // express static function
 app.use(express.static("public"));

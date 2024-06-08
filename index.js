@@ -3,6 +3,8 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Models = require("./models");
+const bcrypt = require("bcrypt");
+const { check, validationResult } = require("express-validator");
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -24,6 +26,26 @@ app.use(morgan("common"));
 // attach bodyparser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// CORS in Express
+const cors = require("cors");
+let allowedOrigins = ["http://localhost:8080", "http://testsite.com"];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        // If a specific origin isn’t found on the list of allowed origins
+        let message =
+          "The CORS policy for this application doesn’t allow access from origin " +
+          origin;
+        return callback(new Error(message), false);
+      }
+      return callback(null, true);
+    },
+  })
+);
 
 // Authentication
 let auth = require("./auth")(app);
@@ -128,15 +150,17 @@ app.get(
 // Create user to register
 
 app.post("/users", async (req, res) => {
-  await Users.findOne({ Name: req.body.Name })
+  let hashedPassword = Users.hashPassword(req.body.Password);
+  await Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
     .then((user) => {
       if (user) {
-        return res.status(400).send(req.body.Name + "already exists");
+        //If the user is found, send a response that it already exists
+        return res.status(400).send(req.body.Username + " already exists");
       } else {
         Users.create({
-          Name: req.body.Name,
-          Password: req.body.Password,
-          FavoriteMovies: req.body.FavoriteMovies,
+          Username: req.body.Username,
+          Password: hashedPassword,
+          Email: req.body.Email,
           Birthday: req.body.Birthday,
         })
           .then((user) => {
@@ -259,6 +283,7 @@ app.use((err, req, res, next) => {
 });
 
 //listens the request
-app.listen(8080, () => {
-  console.log("Your app is listening to the port");
+const port = process.env.PORT || 8080;
+app.listen(port, "0.0.0.0", () => {
+  console.log("Listening on Port " + port);
 });

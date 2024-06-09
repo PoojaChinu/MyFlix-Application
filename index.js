@@ -156,14 +156,14 @@ app.get(
 
 app.post("/users", async (req, res) => {
   let hashedPassword = Users.hashPassword(req.body.Password);
-  await Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+  await Users.findOne({ Name: req.body.Name }) // Search to see if a user with the requested username already exists
     .then((user) => {
       if (user) {
         //If the user is found, send a response that it already exists
-        return res.status(400).send(req.body.Username + " already exists");
+        return res.status(400).send(req.body.Name + " already exists");
       } else {
         Users.create({
-          Username: req.body.Username,
+          Name: req.body.Name,
           Password: hashedPassword,
           Email: req.body.Email,
           Birthday: req.body.Birthday,

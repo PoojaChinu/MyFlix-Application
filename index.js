@@ -3,7 +3,6 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Models = require("./models");
-const bcrypt = require("bcrypt");
 const { check, validationResult } = require("express-validator");
 
 const Movies = Models.Movie;

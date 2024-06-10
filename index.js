@@ -11,16 +11,16 @@ const Users = Models.User;
 const app = express();
 
 // Allow mongoose to connect to database locally
-// mongoose.connect("mongodb://localhost:27017/db", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// Allow mongoose to connect to databse remotely
-mongoose.connect(process.env.CONNECTION_URI, {
+mongoose.connect("mongodb://localhost:27017/db", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+// Allow mongoose to connect to databse remotely
+// mongoose.connect(process.env.CONNECTION_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 // express static function
 app.use(express.static("public"));
@@ -154,41 +154,89 @@ app.get(
 
 // Create user to register
 
-app.post("/users", async (req, res) => {
-  let hashedPassword = Users.hashPassword(req.body.Password);
-  await Users.findOne({ Name: req.body.Name }) // Search to see if a user with the requested username already exists
-    .then((user) => {
-      if (user) {
-        //If the user is found, send a response that it already exists
-        return res.status(400).send(req.body.Name + " already exists");
-      } else {
-        Users.create({
-          Name: req.body.Name,
-          Password: hashedPassword,
-          Email: req.body.Email,
-          Birthday: req.body.Birthday,
-        })
-          .then((user) => {
-            res.status(201).json(user);
+app.post(
+  "/users",
+  // Validation logic here for request
+  //you can either use a chain of methods like .not().isEmpty()
+  //which means "opposite of isEmpty" in plain english "is not empty"
+  //or use .isLength({min: 5}) which means
+  //minimum value of 5 characters are only allowed
+  [
+    check("Name", "Name is required (min length 5)").isLength({ min: 5 }),
+    check(
+      "Name",
+      "Name contains non alphanumeric characters - not allowed."
+    ).isAlphanumeric(),
+    check("Password", "Password is required").not().isEmpty(),
+    check(
+      "Birthday",
+      "Birthday does not appear to be valid (only date allowed)"
+    ).isDate(),
+  ],
+  async (req, res) => {
+    // check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    await Users.findOne({ Name: req.body.Name }) // Search to see if a user with the requested username already exists
+      .then((user) => {
+        if (user) {
+          //If the user is found, send a response that it already exists
+          return res.status(400).send(req.body.Name + " already exists");
+        } else {
+          Users.create({
+            Name: req.body.Name,
+            Password: hashedPassword,
+            Birthday: req.body.Birthday,
           })
-          .catch((error) => {
-            console.error(error);
-            res.status(500).send("Error: " + error);
-          });
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send("Error: " + error);
-    });
-});
+            .then((user) => {
+              res.status(201).json(user);
+            })
+            .catch((error) => {
+              console.error(error);
+              res.status(500).send("Error: " + error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      });
+  }
+);
 
 // Update user info
-
 app.put(
   "/users/:id",
+  // Validation logic here for request
+  //you can either use a chain of methods like .not().isEmpty()
+  //which means "opposite of isEmpty" in plain english "is not empty"
+  //or use .isLength({min: 5}) which means
+  //minimum value of 5 characters are only allowed
+  [
+    check("Name", "Name is required (min length 5)").isLength({ min: 5 }),
+    check(
+      "Name",
+      "Name contains non alphanumeric characters - not allowed."
+    ).isAlphanumeric(),
+    check(
+      "Birthday",
+      "Birthday does not appear to be valid (only date allowed)"
+    ).isDate(),
+  ],
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
+    // check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
     await Users.findOneAndUpdate(
       { _id: req.params.id },
       {

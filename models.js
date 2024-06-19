@@ -13,6 +13,7 @@ let movieSchema = mongoose.Schema({
     Name: String,
     Director: String,
   },
+  Image: String,
 });
 
 let userSchema = mongoose.Schema({

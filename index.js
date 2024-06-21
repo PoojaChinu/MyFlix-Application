@@ -171,6 +171,7 @@ app.post(
       "Name",
       "Name contains non alphanumeric characters - not allowed."
     ).isAlphanumeric(),
+    check("Email", "Email does not appear to be valid").isEmail(),
     check("Password", "Password is required").not().isEmpty(),
     check(
       "Birthday",
@@ -196,6 +197,7 @@ app.post(
             Name: req.body.Name,
             Password: hashedPassword,
             Birthday: req.body.Birthday,
+            Email: req.body.Email,
           })
             .then((user) => {
               res.status(201).json(user);
@@ -248,6 +250,7 @@ app.put(
           Name: req.body.Name,
           FavoriteMovies: req.body.FavoriteMovies,
           Birthday: req.body.Birthday,
+          Email: req.body.Email,
         },
       },
       { new: true }

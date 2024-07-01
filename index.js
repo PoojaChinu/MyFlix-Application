@@ -301,11 +301,12 @@ app.delete(
   "/users/:userID/favorites/:movieID",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    await Users.updateOne(
+    await Users.findOneAndUpdate(
       { _id: req.params.userID },
       {
         $pull: { FavoriteMovies: req.params.movieID },
-      }
+      },
+      { new: true }
     )
       .then((updatedUser) => {
         res.json(updatedUser);

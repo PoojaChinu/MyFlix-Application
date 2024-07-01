@@ -276,23 +276,23 @@ app.patch(
       console.log("Movie is already present in favorites");
 
       res.status(200).send("Movie is already present in favorites");
+    } else {
+      await Users.findOneAndUpdate(
+        { _id: req.params.userID },
+        {
+          $push: { FavoriteMovies: req.params.MovieID },
+        },
+        { new: true }
+      )
+        // This line makes sure that the updated document is returned
+        .then((updatedUser) => {
+          res.json(updatedUser);
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        });
     }
-
-    await Users.findOneAndUpdate(
-      { _id: req.params.userID },
-      {
-        $push: { FavoriteMovies: req.params.MovieID },
-      },
-      { new: true }
-    )
-      // This line makes sure that the updated document is returned
-      .then((updatedUser) => {
-        res.json(updatedUser);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
   }
 );
 

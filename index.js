@@ -11,16 +11,16 @@ const Users = Models.User;
 const app = express();
 
 // Allow mongoose to connect to database locally
-// mongoose.connect("mongodb://localhost:27017/db", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// Allow mongoose to connect to databse remotely
-mongoose.connect(process.env.CONNECTION_URI, {
+mongoose.connect("mongodb://localhost:27017/db", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+// Allow mongoose to connect to databse remotely
+// mongoose.connect(process.env.CONNECTION_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 // express static function
 app.use(express.static("public"));
@@ -275,7 +275,7 @@ app.patch(
     if (user.FavoriteMovies.includes(req.params.MovieID)) {
       console.log("Movie is already present in favorites");
 
-      res.status(200).send("Movie is already present in favorites");
+      res.json(user);
     } else {
       await Users.findOneAndUpdate(
         { _id: req.params.userID },

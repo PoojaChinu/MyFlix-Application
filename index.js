@@ -80,7 +80,7 @@ app.get(
   async (req, res) => {
     await Movies.find()
       .then((movies) => {
-        res.status(201).json([...new Set(movies)]);
+        res.status(200).json(movies);
       })
       .catch((err) => {
         console.error(err);
@@ -147,7 +147,7 @@ app.get(
   async (req, res) => {
     await Users.find()
       .then((users) => {
-        res.status(201).json(users);
+        res.status(200).json(users);
       })
       .catch((err) => {
         console.error(err);
@@ -270,6 +270,14 @@ app.patch(
   "/users/:userID/movies/:MovieID",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
+    const user = await Users.findOne({ _id: req.params.userID });
+
+    if (user.FavoriteMovies.includes(req.params.MovieID)) {
+      console.log("Movie is already present in favorites");
+
+      res.status(200).send("Movie is already present in favorites");
+    }
+
     await Users.findOneAndUpdate(
       { _id: req.params.userID },
       {

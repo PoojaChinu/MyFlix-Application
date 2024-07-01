@@ -307,10 +307,8 @@ app.delete(
         $pull: { FavoriteMovies: req.params.movieID },
       }
     )
-      .then(() => {
-        res
-          .status(200)
-          .send({ result: `MovieID ${req.params.movieID} was deleted.` });
+      .then((updatedUser) => {
+        res.json(updatedUser);
       })
       .catch((error) => {
         console.error(error);

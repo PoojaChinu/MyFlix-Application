@@ -233,6 +233,8 @@ app.put(
       "Birthday",
       "Birthday does not appear to be valid (only date allowed)"
     ).isDate(),
+    check("Email", "Email does not appear to be valid").isEmail(),
+    check("Password", "Password is required").not().isEmpty(),
   ],
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
@@ -243,14 +245,16 @@ app.put(
       return res.status(422).json({ errors: errors.array() });
     }
 
+    let hashedPassword = Users.hashPassword(req.body.Password);
+
     await Users.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
           Name: req.body.Name,
-          FavoriteMovies: req.body.FavoriteMovies,
           Birthday: req.body.Birthday,
           Email: req.body.Email,
+          Password: hashedPassword,
         },
       },
       { new: true }

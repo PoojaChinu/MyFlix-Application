@@ -1,14 +1,24 @@
-### Software Developer : Pooja Porwal
-
 ### Project Description:
 
 The web  application will provide users with access to information about different  movies, directors, and genres. Users will be able to sign up, update their  personal information, and create a list of their favorite movies. Data are stored in MongoDB, this means you have to work with just two collections namely movies collection and users collection in a database.
 
+## Features
+
+- **Movies API**: Access movie details.
+- **User Management**: Manage users and their favorite movies.
+- **Authentication**: JWT-based security.
+- **Swagger Documentation**: Interactive API docs.
+- **Data Validation**: Ensures data integrity.
+
 ### Tech Stack
 
-- [Node.js](https://nodejs.org/en)
-- [Express](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/)
+- **Express.js**: Node.js web framework.
+- **MongoDB**: NoSQL database.
+- **Mongoose**: MongoDB ODM.
+- **Passport.js**: Authentication middleware.
+- **Swagger**: API documentation tool.
+- **Cors**: Cross-Origin Resource Sharing middleware.
+- **Bcrypt**: Password hashing.
 
 ### Project Setup
 

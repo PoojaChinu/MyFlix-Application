@@ -1,2 +1,0 @@
-{"_id":{"$oid":"6666bd7e561980bb408e6293"},"Name":"Chinu","Password":"$2b$10$zwueq5DZND5D9osWbYJV8.TiV7C3vZF5eDW4pYxLN9BmTRTK2TzF2","FavoriteMovies":[],"Birthday":{"$date":"1995-06-23T00:00:00Z"},"__v":0,"Email":"chinu@gmail.com"}
-{"_id":{"$oid":"667566ffe181d231034d1c0e"},"Name":"Thomas","Password":"$2b$10$30IZWkQt3SzTlMa82mtom.jwoG7.2DqniGVEDXhvXQhNUzDcJHUge","Email":"thomas@gmail.com","FavoriteMovies":[],"Birthday":{"$date":"1995-06-23T00:00:00Z"},"__v":0}
